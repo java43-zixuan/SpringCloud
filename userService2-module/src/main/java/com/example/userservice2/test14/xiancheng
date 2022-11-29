@@ -1,0 +1,12 @@
+如何创建线程
+
+1、线程对象
+    1、手动创建  new Thread()
+    2、jdk1.5 之后使用线程池创建
+
+
+2、线程类(创建线程对象可以独立执行的任务类)
+    1、实现Runnable接口  只有一个run方法
+    2、继承Thread父类
+    3、jdk1.5之后 实现Callable接口 + FutureTask
+

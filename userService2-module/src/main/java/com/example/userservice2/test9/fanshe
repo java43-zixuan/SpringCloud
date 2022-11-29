@@ -1,0 +1,19 @@
+反射
+
+获取运行时类Class
+Class clazz = 类名.class;
+Class clazz = 对象.getClass();
+Class clazz = Class.forName("包名.类名")
+1.分析类的接口（修饰符，类名，继承的父类，实现的父接口）
+2.反射创建对象
+    类中默认无参构造方法：执行创建  newInstance();
+    找到某一个构造方法：执行创建
+3.获取类中的成员
+    a.获取属性
+        clazz.getFiled("属性名");
+        存、取信息   set()/get()
+    b.获取方法
+        clazz.getMethod("方法名",参数类型...)
+        执行方法  invoke()
+    c.获取构造方法
+        执行构造方法  newInstance()
