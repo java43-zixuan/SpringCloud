@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: gateWay-module
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: userService1               # 路由id，自定义，只要唯一即可
+          uri: lb://userService1-module  # 路由的目标地址 lb是负载均衡，后面跟服务名称(推荐)
+          predicates:
+            - Path=/demo/**
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+
+        - id: userService2
+          uri: lb://userService2-module
+          predicates:
+            - Path=/demo/**
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+
+        - id: userService3
+          uri: lb://userService3-module
+          predicates:
+            - Path=/demo/**
+          filters:
+            - StripPrefix=1
+
+server:
+  port: 7002
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+ribbon:
+  ConnectTimeout: 2000  # 请求连接的超时时间
+  MaxConnectionsPerHost: 500  # 每个host最大连接数
+  MaxTotalConnections: 500  # 最大连接数
+  #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #轮询
+  #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule     #随机
+  #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #权重 根据每个服务提供者的响应时间分配一个权重，响应时间越长，权重越小，被选中的可能性也就越低。
+  #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #最小连接数
+  #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.ZoneAvoidanceRule #区域敏感策略 根据服务所在区域（zone）的性能和服务的可用性来选择服务实例，在没有区域的环境下，该策略和轮询策略类似。
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.AvailabilityFilteringRule #可用敏感性策略：AvailabilityFilteringRule，先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例
+  ReadTimeout: 5000  # 请求处理的超时时间
+
+
+swagger-agg:
+  generate-routes: userService1,userService2
+
+# authorization:
+#   ignored-urls:
+#     - /doc.html
+#     - /swagger-ui/*
+#     - /swagger/*
+#     - /swagger-resources/*
+#     - /*/v2/api-docs
