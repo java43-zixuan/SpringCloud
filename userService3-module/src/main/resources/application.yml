@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: userService3-module
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloudtest?autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: zx496267.
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 7005
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka/
+
+# mybatis-plus:
+#   # 修改 mybatis 的 DefaultEnumTypeHandler
+#   configuration:
+#     default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+#     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#   global-config:
+#     db-config:
+#       #逻辑删除定义
+#       logic-delete-field: delFlag # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置@TableLogic)
+#       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+redis:
+  database: 1
+  host: localhost
+  port: 6379
+  password:
+  pool:
+    maxIdle: 30
+    minIdle: 1
+    maxActive: 20
+    maxWait: -1
