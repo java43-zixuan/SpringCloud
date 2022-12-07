@@ -22,6 +22,7 @@ public class Test {
         //这种情况如果需要使用add,remove等方法，需要我们自己构造Arraylist
         ArrayList<Integer> arrayList = new ArrayList<>(a);
 
+
         /**
          * 集合-->数组
          */
