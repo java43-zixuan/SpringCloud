@@ -2,7 +2,12 @@ package com.example.common.utils;
 
 import com.example.common.exception.ServiceException;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateUtil {
@@ -126,4 +131,107 @@ public class DateUtil {
         long diff =  System.currentTimeMillis() - startTime;
         return diff / 1000 / 60;// 计算差多少分钟
     }
+
+
+    /**
+     * 将LocalDateTime转为自定义的时间格式的字符串
+     */
+    public static String getDateTimeAsString(LocalDateTime localDateTime, String format) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        return localDateTime.format(formatter);
+    }
+    /**
+     * 将long类型的timestamp转为LocalDateTime
+     */
+    public static LocalDateTime getDateTimeOfTimestamp(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        ZoneId zone = ZoneId.systemDefault();
+        return LocalDateTime.ofInstant(instant, zone);
+    }
+    /**
+     * 将LocalDateTime转为long类型的timestamp
+     */
+    public static long getTimestampOfDateTime(LocalDateTime localDateTime) {
+        ZoneId zone = ZoneId.systemDefault();
+        Instant instant = localDateTime.atZone(zone).toInstant();
+        return instant.toEpochMilli();
+    }
+    /**
+     * 将某时间字符串转为自定义时间格式的LocalDateTime
+     */
+    public static LocalDateTime parseStringToDateTime(String time, String format) {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern(format);
+        return LocalDateTime.parse(time, df);
+    }
+
+    /**
+     * 字符串转日期
+     */
+
+    public static String getDateAsString(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = sdf.format(date);
+        return dateStr;
+    }
+
+    public static Date getDateAsString(String dateStr) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = sdf.parse(dateStr);
+        System.out.println(date);
+        return date;
+    }
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+        LocalDateTime ld2 = LocalDateTime.of(2019, 2, 19, 11, 19, 59);
+        System.out.println(ld2);//2019-02-19T11:19:59
+
+        LocalDateTime ld3 = ld2.plusYears(2);//在当前的日期上在加两年
+        System.out.println(ld3);//2021-02-19T11:19:59
+
+        LocalDateTime ld4 = ld2.plusMonths(2);//在当前的日期上在加个月
+        System.out.println(ld4);//2019-04-19T11:19:59
+
+        LocalDateTime ld5 = ld2.plusWeeks(2);//在当前的日期上在加周  （2月28天 在加2周14天）
+        //ld2.plusDays(14);  //相当于
+        System.out.println(ld5);//2019-03-05T11:19:59
+
+        LocalDateTime ld6 = ld2.plusDays(2);//在当前的日期上在加两天
+        System.out.println(ld6);//2019-02-21T11:19:59
+
+        LocalDateTime ld7 = ld2.plusHours(2);//在当前的日期上在加个小时
+        System.out.println(ld7);//2019-02-19T13:19:59
+
+
+
+        LocalDateTime ld8 = ld2.minusYears(2);//在当前的日期上在减两年
+        System.out.println(ld8);//2017-02-19T11:19:59
+
+        LocalDateTime ld9 = ld2.minusMonths(2);//在当前的日期上在减两个月
+        System.out.println(ld9);//2018-12-19T11:19:59
+
+        LocalDateTime ld10 = ld2.minusWeeks(2);//在当前的日期上在减两周
+        System.out.println(ld10);//2019-02-05T11:19:59
+
+        LocalDateTime ld11 = ld2.minusDays(2);//在当前的日期上在减两天
+        System.out.println(ld11);//2019-02-17T11:19:59
+
+        LocalDateTime ld12 = ld2.minusHours(2);//在当前的日期上在减两个小时
+        System.out.println(ld12);//2019-02-19T09:19:59
+
+        LocalDateTime ld13 = ld2.minusMinutes(2);//在当前的日期上在减两分钟
+        System.out.println(ld13);//2019-02-19T11:17:59
+
+        LocalDateTime ld14 = ld2.minusSeconds(2);//在当前的日期上在减两秒
+        System.out.println(ld14);//2019-02-19T11:19:57
+
+        LocalDateTime ld15 = ld2.minusNanos(2);//在当前的日期上在减两纳秒
+        System.out.println(ld15);//2019-02-19T11:19:58.999999998
+    }
+
 }

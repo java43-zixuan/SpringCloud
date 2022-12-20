@@ -7,6 +7,6 @@ spring:
         prefix: userService1-module
         server-addr: localhost:8848
         namespace: c2e808eb-7c38-4d08-8f72-8fb77d797ca3
-        enabled: flase
+        enabled: false
         group: DEFAULT_GROUP
         file-extension: yaml

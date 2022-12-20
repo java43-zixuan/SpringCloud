@@ -5,13 +5,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cloudtest?autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
-    password: wkn123456.
+    password: zx496267.
 server:
-  port: 7005
+  port: 7004
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:7001/eureka/
 mybatis-plus:

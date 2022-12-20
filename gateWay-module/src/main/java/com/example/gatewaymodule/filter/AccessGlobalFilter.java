@@ -2,6 +2,7 @@ package com.example.gatewaymodule.filter;
 
 
 import com.example.gatewaymodule.config.AccessBindingHelper;
+import com.example.gatewaymodule.util.ContextHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,6 @@ import reactor.core.publisher.Mono;
 /**
  * 访问权限控制Filter<br/>
  * 配置例：
- * <pre>
- * access.binding.blacklist[0].url-pattern=/foo/bar
- * access.binding.blacklist[0].partner-code=abc
- * access.binding.blacklist[0].user=xyz
- * access.binding.blacklist[1].url-pattern=/foo/bar/*
- * access.binding.blacklist[1].partner-code=ab*c
- * access.binding.blacklist[2].url-pattern=/foo/*bar
- * access.binding.blacklist[2].user=*
- * access.binding.whitelist[0].url-pattern=/foo/bar
- * access.binding.whitelist[0].partner-code=aa,b*b,cc*
- * access.binding.whitelist[0].user=xx,yy
  *
  * @author web
  * </pre>
@@ -58,6 +48,11 @@ public class AccessGlobalFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
 
+        //默认先放行
+        if(true){
+            return chain.filter(exchange);
+        }
+
 //        String token = AuthorizeGatewayFilterFactory.getToken(request);
 //        AuthKeyVo vo = validateByAuth(token);
 //        if (vo == null || vo.getAgencyCode() == null || vo.getAccountName() == null
@@ -66,6 +61,8 @@ public class AccessGlobalFilter implements GlobalFilter, Ordered {
 //            return chain.filter(exchange);
 //        }
 //        ContextHandler.clear();
+
+
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
         return response.setComplete();

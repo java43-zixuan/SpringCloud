@@ -23,11 +23,11 @@ public class LoginDto extends BaseDto{
     private String verifyCode;
 
     @ApiModelProperty(value = "验证码ID", name = "verifyCodeId", example = "1234", required = true)
-    @NotNull(message = "验证码id不能为空")
+    @NotBlank(message = "验证码id不能为空")
     private String verifyCodeId;
 
     // 是否踢掉其他用户用
     @ApiModelProperty(value = "确认登陆标识", name = "confirmLoginFlg", example = "0", required = true)
-    @NotNull(message = "确认登陆标识不能为空")
+    @NotBlank(message = "确认登陆标识不能为空")
     private String confirmLoginFlg;
 }

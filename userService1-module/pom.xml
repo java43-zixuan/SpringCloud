@@ -21,28 +21,31 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-
         <!-- kafka-module依赖 -->
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>kafka-module</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <!-- web依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!--注册中心客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
         <!--配置中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+
         <!--热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -54,7 +57,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
-            <version>2.2.10</version>
         </dependency>
 
         <!-- 支持aop相关注解 -->
@@ -99,7 +101,6 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
         </dependency>
         <!-- lombok -->
         <dependency>
@@ -173,9 +174,8 @@
             <version>5.1.10.RELEASE</version>
         </dependency>
         <!-- Caffeine本地缓存 -->
-
-
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

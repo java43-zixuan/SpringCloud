@@ -1,8 +1,7 @@
-package com.example.userservice1.aspect;
+package com.example.common.exception;
 
 
 import com.example.common.constant.UnitConstants;
-import com.example.common.exception.ServiceException;
 import com.example.common.utils.LogUtil;
 import com.example.common.vo.ResultVO;
 import org.apache.commons.logging.Log;
@@ -26,6 +25,7 @@ import java.util.Set;
 
 /**
  * 全局异常处理切面：利用 @ControllerAdvice + @ExceptionHandler组合处理控制器层RuntimeException异常
+ * 必须被spring扫描到才会生效（注意启动类扫描范围）
  * @author web
  */
 @Component
@@ -60,15 +60,13 @@ public class ExceptionAspect {
 	@ExceptionHandler({ValidationException.class, BindException.class, MethodArgumentNotValidException.class})
 	public ResultVO<?> handleValidationException(Exception e) {
 		logger.error("控制器校验参数异常...", e);
-
 		//@Validated 校验方法【普通类型参数】，直接在参数前写@NotNull等校验注解
 		if(e instanceof ValidationException) {
 			if(e instanceof ConstraintViolationException) {
 				Set<ConstraintViolation<?>> cvs = ((ConstraintViolationException)e).getConstraintViolations();
 				StringBuilder errMsg = new StringBuilder();
 				cvs.forEach(cv -> errMsg.append(cv.getPropertyPath()).append(cv.getMessage()).append("，输入值为[").append(cv.getInvalidValue()).append("]。"));
-
-				return ResultVO.fail(UnitConstants.FAIL_VALIDATE_CODE,"控制器校验参数异常："+errMsg.toString());
+				return ResultVO.fail(UnitConstants.FAIL_VALIDATE_CODE,errMsg.toString());
 			}
 		}else {
 			//@Valid 校验方法【对象类型参数】，对象中写@NotNull等校验注解
@@ -78,14 +76,12 @@ public class ExceptionAspect {
 			}else if(e instanceof MethodArgumentNotValidException) {
 				br = ((MethodArgumentNotValidException)e).getBindingResult();
 			}
-
 			if (null != br) {
 				StringBuilder errMsg = new StringBuilder();
-				br.getFieldErrors().forEach(error -> errMsg.append(error.getObjectName()).append(".").append(error.getField()).append(error.getDefaultMessage()).append("，输入值为[").append(error.getRejectedValue()).append("]。"));
-				return ResultVO.fail(UnitConstants.FAIL_VALIDATE_CODE,"控制器校验参数异常："+errMsg.toString());
+				br.getFieldErrors().forEach(error -> errMsg.append(error.getDefaultMessage()).append("，输入值为[").append(error.getRejectedValue()).append("]。"));
+				return ResultVO.fail(UnitConstants.FAIL_VALIDATE_CODE,errMsg.toString());
 			}
 		}
-
 		return ResultVO.fail(UnitConstants.FAIL_VALIDATE_CODE,"控制器校验参数异常...");
 	}
 

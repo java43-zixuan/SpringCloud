@@ -23,7 +23,7 @@ public class LoginController {
 
     @ApiOperation(value="登录")
     @PostMapping("/login")
-    public ResultVO login(@RequestBody @Valid LoginDto loginDto){
+    public ResultVO login(@RequestBody @Validated LoginDto loginDto){
         ResultVO result = new ResultVO();
         try {
             result = loginService.login(loginDto);

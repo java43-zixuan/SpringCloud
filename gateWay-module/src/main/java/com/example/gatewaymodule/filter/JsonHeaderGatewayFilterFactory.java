@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * application/json FilterFactory
+ * 请求参数是否为json类型的过滤器
  *
  * @author ld
  */

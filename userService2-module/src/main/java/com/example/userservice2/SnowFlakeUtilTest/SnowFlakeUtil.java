@@ -1,5 +1,9 @@
 package com.example.userservice2.SnowFlakeUtilTest;
 
+import com.example.common.utils.DateUtil;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class SnowFlakeUtil {
@@ -168,9 +172,10 @@ public class SnowFlakeUtil {
         long id = snowFlakeUtil.nextId();
         System.out.println("id============>"+id);
         Date date = SnowFlakeUtil.getTimeBySnowFlakeId(id);
-        System.out.println("date============>"+date);
+        System.out.println("date============>"+ DateUtil.getDateAsString(date));
         long time = date.getTime();
         System.out.println("time============>"+time);
+
         System.out.println("随机数字============>"+getRandomStr());
 
     }
