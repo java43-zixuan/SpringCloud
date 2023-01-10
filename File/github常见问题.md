@@ -1,14 +1,14 @@
 Git:
 
-# GitHub Start
-#20.205.243.166 github.com
+ GitHub Start
+20.205.243.166 github.com
 140.82.113.4 github.com
 199.232.69.194 github.global.ssl.fastly.net
 185.199.108.153 assets-cdn.github.com
 185.199.109.153 assets-cdn.github.com
 185.199.110.153 assets-cdn.github.com
-185.199.111.153 assets-cdn.github.com
-# GitHub End
+185.199.111.153 assets-cdn.github.com 
+ GitHub End
 
 如果你所在地区不翻墙的情况下无法打开github.com网站，那么通过修改电脑本地hosts文件就可以正常打开github.com。
 其中http://assets-cdn.github.com是固定的，

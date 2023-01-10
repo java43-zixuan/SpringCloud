@@ -33,12 +33,12 @@ public class ControllerAspect {
     /**
      * 所有@RestController或@Controller注解标注  在com.bacs.platform.*.controller..包下的所有方法
      */
-    @Pointcut("(@target(org.springframework.web.bind.annotation.RestController) || @target(org.springframework.stereotype.Controller)) " +
-            "&& execution(public * com.example.userservice1.controller..*.*(..))")
+//    @Pointcut("(@target(org.springframework.web.bind.annotation.RestController) || @target(org.springframework.stereotype.Controller)) " +
+//            "&& execution(public * com.example.userservice1.controller..*.*(..))")
     public void webAop() {
     }
 
-    @Around("webAop()")
+//    @Around("webAop()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         //获取 Request
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
