@@ -163,7 +163,7 @@ public interface UnitConstants<T> {
      * @return Zone
      * @throws ParseException ParseException
      */
-    static String dateStrConvertToZone(String dateStr,String oldFormat,String newFormat) throws ParseException {
+    static String dateStrConvertToZone(String dateStr, String oldFormat, String newFormat) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(oldFormat);
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(newFormat);
         return simpleDateFormat1.format(simpleDateFormat.parse(dateStr));

@@ -1,4 +1,4 @@
-//package com.example.gatewaymodule.config;
+package com.example.gatewaymodule.config;//package com.example.gatewaymodule.config;
 //
 //import feign.codec.Decoder;
 //import org.springframework.beans.factory.ObjectFactory;

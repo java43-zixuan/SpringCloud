@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableEurekaClient
 @SpringBootApplication
-@MapperScan(basePackages = {"com.example.*"})
+@MapperScan(basePackages = {"com.example.userservice2.mapper"})
 @ComponentScan(basePackages = {"com.example.*"})
 public class UserService2Application {
 

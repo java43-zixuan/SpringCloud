@@ -1,5 +1,7 @@
 package com.example.common.exception;
 
+import com.example.common.response.ResponseEnum;
+
 /**
  * 业务异常类<br/>
  * Spring的事务默认回滚RuntimeException类型异常，故继承该类。
@@ -8,6 +10,10 @@ package com.example.common.exception;
  */
 public class ServiceException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
+
+	private Object object;
+
+	private ResponseEnum responseEnum;
 
 	public ServiceException() {
 		super();
@@ -27,6 +33,17 @@ public class ServiceException extends RuntimeException {
 
 	public ServiceException(Throwable cause) {
 		super(cause);
+	}
+
+	public ServiceException(ResponseEnum responseEnum) {
+		super(responseEnum.getMsg());
+		this.responseEnum = responseEnum;
+	}
+
+	public ServiceException(ResponseEnum responseEnum, Object object) {
+		super(responseEnum.getMsg());
+		this.responseEnum = responseEnum;
+		this.object = object;
 	}
 
 }

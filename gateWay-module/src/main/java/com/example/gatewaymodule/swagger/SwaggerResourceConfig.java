@@ -16,6 +16,7 @@ import java.util.List;
  * @author ZH
  */
 @Component
+@Primary
 public class SwaggerResourceConfig implements SwaggerResourcesProvider {
     private final RouteLocator routeLocator = null;
     private final GatewayProperties gatewayProperties;

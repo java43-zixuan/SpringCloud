@@ -185,6 +185,6 @@ public interface IRedisService {
      * @param key
      * @return
      */
-    void setKey(String key,String value);
+    void setKey(String key, String value);
 
 }

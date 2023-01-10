@@ -37,19 +37,19 @@ spring:
         - id: userService3
           uri: lb://userService3-module
           predicates:
-            - Path=/openapi/**
+            - Path=/openapi-module3/**
           filters:
             - StripPrefix=1
 
 server:
-  port: 7002
+  port: 8002
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://119.3.221.244:8001/eureka
 ribbon:
   ConnectTimeout: 2000  # 请求连接的超时时间
   MaxConnectionsPerHost: 500  # 每个host最大连接数
@@ -64,7 +64,7 @@ ribbon:
 
 
 swagger-agg:
-  generate-routes: userService1,userService2
+  generate-routes: userService1,userService2,userService3
 
 # authorization:
 #   ignored-urls:
