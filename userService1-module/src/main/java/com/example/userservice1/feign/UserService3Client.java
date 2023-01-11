@@ -9,4 +9,6 @@ public interface UserService3Client {
     @PostMapping("/test/addUser")
     String insertData();
 
+    @PostMapping("/test/addUser2")
+    String insertData2();
 }

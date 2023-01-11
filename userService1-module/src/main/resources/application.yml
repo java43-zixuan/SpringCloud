@@ -132,4 +132,7 @@ seata:
     type: file
     file:
       name: file
+  client:
+    undo:
+      log-serialization: protostuff
 

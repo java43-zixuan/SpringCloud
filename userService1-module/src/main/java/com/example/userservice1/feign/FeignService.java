@@ -5,10 +5,9 @@ import com.example.userservice1.service.IUserService;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@GlobalTransactional(name = "seata-server", rollbackFor = Exception.class)
+
 public class FeignService {
 
     @Autowired
@@ -17,10 +16,24 @@ public class FeignService {
     @Autowired
     private IUserService userService;
 
-    @Transactional(rollbackFor = Exception.class)
+    /**
+     * 测试报错在被调用方
+     * @param user
+     */
+    @GlobalTransactional(name = "seata-server", rollbackFor = Exception.class)
     public void addUser(User user) {
-        userService3Client.insertData();
         userService.save(user);
+        userService3Client.insertData();
+    }
+
+    /**
+     * 测试报错在调用方
+     * @param user
+     */
+    @GlobalTransactional(name = "seata-server", rollbackFor = Exception.class)
+    public void addUser2(User user) {
+        userService.save(user);
+        userService3Client.insertData2();
         if(true){
             throw new RuntimeException("报错了！");
         }

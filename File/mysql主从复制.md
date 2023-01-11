@@ -1,6 +1,6 @@
-参考文献：
-https://blog.csdn.net/qq_44212783/article/details/126492559
-https://cloud.tencent.com/developer/article/2009379
+##参考文献：
+`https://blog.csdn.net/qq_44212783/article/details/126492559`
+`https://cloud.tencent.com/developer/article/2009379`
 
 ## 1.准备两台机器，安装配置好mysql
 
