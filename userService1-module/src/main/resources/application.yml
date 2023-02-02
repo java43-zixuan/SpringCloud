@@ -37,6 +37,11 @@ spring:
 #      value:
 #        serializer:
 #          class: org.apache.kafka.common.serialization.ByteArraySerializer
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   port: 8003

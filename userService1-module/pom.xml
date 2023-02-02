@@ -169,6 +169,17 @@
         </dependency>
         <!-- 解决seata LocalDateTime序列化问题 end -->
 
+        <!-- rabbitMq -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
