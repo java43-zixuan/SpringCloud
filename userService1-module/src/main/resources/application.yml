@@ -140,4 +140,16 @@ seata:
   client:
     undo:
       log-serialization: protostuff
+xxl:
+  job:
+    accessToken:
+    admin:
+      addresses: http://localhost:8087/xxl-job-admin/
+    executor:
+      appname: userService1-module
+      address:
+      ip:
+      port: 9997
+      logpath: ./logs
+      logretentiondays: 30
 

@@ -10,6 +10,9 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
+/**
+ * 邮件发送功能
+ */
 public class Mail {
 
 

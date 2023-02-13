@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * 爬虫获取图片
+ */
 public class PaChong {
 
     public static void main(String[] args) {

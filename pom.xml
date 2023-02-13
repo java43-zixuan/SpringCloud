@@ -13,16 +13,14 @@
     <module>eureka-module</module>
     <!--gateWay-->
     <module>gateWay-module</module>
-    <!--common-->
-    <module>common</module>
     <!--userService1-->
     <module>userService1-module</module>
     <!--userService2-->
     <module>userService2-module</module>
     <!--userService3-->
     <module>userService3-module</module>
-    <!--kafka-module-->
-    <module>kafka-module</module>
+    <!--commons-module-->
+    <module>commons-module</module>
 
   </modules>
   <packaging>pom</packaging>
@@ -55,6 +53,7 @@
     <fileupload.version>1.4</fileupload.version>
     <easyexcel.version>2.2.10</easyexcel.version>
     <redission.version>3.19.1</redission.version>
+    <xxl-job.version>2.3.0</xxl-job.version>
   </properties>
 
 
