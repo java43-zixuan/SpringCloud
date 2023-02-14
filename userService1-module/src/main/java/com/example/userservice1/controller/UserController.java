@@ -18,6 +18,7 @@ import com.example.common.utils.ReadExcelUtil;
 import com.example.common.vo.OpenResponse;
 import com.example.common.vo.Response;
 import com.example.common.vo.ReturnCode;
+import com.example.userservice1.aspect.LimitRequest;
 import com.example.userservice1.entity.User;
 import com.example.userservice1.service.IUserService;
 import io.swagger.annotations.Api;
@@ -52,6 +53,8 @@ public class UserController {
     private IUserService userService;
 
     @ApiOperation(value = "获取用户列表")
+    //其中count指的是规定时间内的访问次数，表示该接口在我们设置的默认时间内只能访问3次，默认时间在自定义注解里面设置的
+    @LimitRequest(time=1000,count=3)
     @PostMapping("/getUserList")
     public Response getUserList(@RequestBody @Validated UserDto dto){
         log.info("获取用户列表:{}", JSON.toJSONString(dto));

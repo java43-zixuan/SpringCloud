@@ -25,8 +25,12 @@ spring:
           predicates:
             - Path=/openapi-module1/**           # 断言，路由匹配条件，匹配 /openapi 开头的所有 api
           filters:
-            - StripPrefix=1              # 去除前缀的作用,相当于去除openapi
-
+            - StripPrefix= 1              # 去除前缀的作用,相当于去除openapi
+            - name: RequestRateLimiter   # 过滤器名称
+              args: # 过滤器参数
+                key-resolver: "#{@ipKeyResolver}" # 通过spel表达式取IOC容器中Bean的值
+                redis-rate-limiter.replenishRate: 1 # 生成令牌的速度
+                redis-rate-limiter.burstCapacity: 1 # 桶容量
         - id: userService2
           uri: lb://userService2-module
           predicates:
