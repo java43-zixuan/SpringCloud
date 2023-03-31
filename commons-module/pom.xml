@@ -17,5 +17,6 @@
         <module>common-core</module>
         <module>kafka-core</module>
         <module>xxlJob-core</module>
+        <module>redis-core</module>
     </modules>
 </project>

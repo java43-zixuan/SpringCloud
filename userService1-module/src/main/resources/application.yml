@@ -6,7 +6,9 @@ spring:
       max-request-size: 200MB
   application:
     name: userService1-module
-#针对Date类型时间，可以做到全局格式化
+  main:
+    allow-bean-definition-overriding: true
+  #针对Date类型时间，可以做到全局格式化
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 #    time-zone: GMT+8
@@ -37,11 +39,11 @@ spring:
 #      value:
 #        serializer:
 #          class: org.apache.kafka.common.serialization.ByteArraySerializer
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
 
 server:
   port: 8003
@@ -66,9 +68,9 @@ mybatis-plus:
 
 redis:
   database: 1
-#  host: localhost
-#  port: 6379
-  password:
+  #  host: localhost
+  #  port: 6379
+  #  password:
   sentinel:
     master: mymaster #指定maser名称
     nodes: 119.3.221.244:27001,119.3.221.244:27002,119.3.221.244:27003
@@ -77,33 +79,7 @@ redis:
     minIdle: 1
     maxActive: 20
     maxWait: -1
-  redisson:
-    # file: classpath:redisson.yaml
-    config:
-      # 单机
-      # singleServerConfig:
-          # password: null
-          # timeout: 10000
-          # address: redis://10.210.10.154:7004
-      # 集群
-      clusterServersConfig:
-        nodeAddresses:
-        - "redis://119.3.221.244:27001"
-        - "redis://119.3.221.244:27002"
-        - "redis://119.3.221.244:27003"
-        password:
-        loadBalancer: org.redisson.connection.balancer.RoundRobinLoadBalancer
-        slaveConnectionMinimumIdleSize: 8
-        slaveConnectionPoolSize: 16
-        sslEnableEndpointIdentification: false
-        timeout: 3000
 
-      # 所有Redis节点客户端之间共享的线程数量，默认值: 当前处理核数量 * 2
-      threads: 24
-      # Netty线程池数量，默认值: 当前处理核数量 * 2
-      nettyThreads: 12
-      # 传输模式，默认值：NIO
-      transportMode: NIO
 
 minio:
   url: http://127.0.0.1:9090    #minio启动后的API对应地址

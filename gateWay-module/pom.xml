@@ -14,10 +14,10 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- common依赖 -->
+        <!-- common-core依赖 -->
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>common-core</artifactId>
             <version>1.0-SNAPSHOT</version>
             <!--因为 web 与 webflux 只能保存一个,所以排除掉common中的web-->
             <exclusions>
@@ -41,9 +41,9 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-data-redis</artifactId>
                 </exclusion>
-
             </exclusions>
         </dependency>
+
         <!--gateway 网关依赖,内置webflux 依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

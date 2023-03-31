@@ -180,5 +180,18 @@ Test {
         System.out.println("单级分类============>"+result);
         Map<String, Map<String, List<UserDto>>> groupBys = userDtos.stream().collect(Collectors.groupingBy(UserDto::getAge,Collectors.groupingBy(UserDto::getUserName)));
         System.out.println("多级分类============>"+groupBys);
+
+
+        String[] strArr = { "abcd", "bcdd", "defde", "fTr" };
+        List<String> strList12 = Arrays.stream(strArr).map(String::toUpperCase).collect(Collectors.toList());
+
+        List<Integer> intList = Arrays.asList(1, 3, 5, 7, 9, 11);
+        List<Integer> intListNew = intList.stream().map(x -> x + 3).collect(Collectors.toList());
+        System.out.println("每个元素大写：" + strList12);
+        System.out.println("每个元素+3：" + intListNew);
     }
+
+
+
+
 }

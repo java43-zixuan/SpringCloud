@@ -1,7 +1,7 @@
 package com.example.userservice2.test19;
 
 import com.google.common.base.Joiner;
-import com.sun.deploy.util.StringUtils;
+//import com.sun.deploy.util.StringUtils;
 import org.jsoup.internal.StringUtil;
 
 import java.util.Arrays;
@@ -33,8 +33,8 @@ public class test {
         System.out.println("第二种方式:"+str2);
 
         //第三种：com.sun.deploy.util.StringUtils 的join方法
-        String str3 =StringUtils.join(list,",");
-        System.out.println("第三种方式:"+str3);
+//        String str3 =StringUtils.join(list,",");
+//        System.out.println("第三种方式:"+str3);
 
         //第四种：Stream流
         String str4 =list.stream().collect(Collectors.joining(","));

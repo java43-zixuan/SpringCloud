@@ -29,6 +29,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- redis-core依赖 -->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>redis-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- xxlJob-core依赖 -->
         <dependency>
             <groupId>org.example</groupId>
@@ -177,14 +184,14 @@
         <!-- 解决seata LocalDateTime序列化问题 end -->
 
         <!-- rabbitMq -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.amqp</groupId>-->
+<!--            <artifactId>spring-rabbit</artifactId>-->
+<!--        </dependency>-->
 
         <!-- 接口访问频次限制 -->
         <dependency>

@@ -1,6 +1,8 @@
 package com.example.gatewaymodule.util;
 
 
+import org.apache.poi.ss.formula.functions.T;
+
 /**
  * 后台当前上下文
  *
@@ -8,20 +10,19 @@ package com.example.gatewaymodule.util;
  * @version 2022-07-11
  */
 public class ContextHandler {
-//    private static final ThreadLocal<AuthKeyVo> CONTEXT = new ThreadLocal<>();
-//
-//    public static void setAuthKeyVo(AuthKeyVo value) {
-//        CONTEXT.set(value);
-//    }
-//
-//    public static AuthKeyVo getAuthKeyVo() {
-//        return CONTEXT.get();
-//    }
+    private static final ThreadLocal<Object> CONTEXT = new ThreadLocal<>();
 
-//    /**
-//     * 销毁上下文
-//     */
-//    public static void clear() {
-//        CONTEXT.remove();
-//    }
+    public static void setAuthKeyVo(Object value) {
+        CONTEXT.set(value);
+    }
+
+    public static Object getAuthKeyVo() {
+        return CONTEXT.get();
+    }
+    /**
+     * 销毁上下文
+     */
+    public static void clear() {
+        CONTEXT.remove();
+    }
 }

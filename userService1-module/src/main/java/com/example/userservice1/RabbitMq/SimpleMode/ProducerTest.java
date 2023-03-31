@@ -1,9 +1,9 @@
-package com.example.userservice1.RabbitMq.SimpleMode;
-
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class ProducerTest {
+//package com.example.userservice1.RabbitMq.SimpleMode;
+//
+//import org.springframework.amqp.rabbit.core.RabbitTemplate;
+//import org.springframework.beans.factory.annotation.Autowired;
+//
+//public class ProducerTest {
 //    @Autowired
 //    RabbitTemplate rabbitTemplate;
 //    public void simpleProduct(){
@@ -11,4 +11,4 @@ public class ProducerTest {
 //            rabbitTemplate.convertAndSend("simpleQueue", "简单模式"+num);
 //        }
 //    }
-}
+//}

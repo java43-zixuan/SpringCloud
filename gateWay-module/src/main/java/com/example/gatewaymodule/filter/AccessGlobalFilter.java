@@ -48,19 +48,17 @@ public class AccessGlobalFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
 
-        //默认先放行
-        if(true){
-            return chain.filter(exchange);
-        }
-
-//        String token = AuthorizeGatewayFilterFactory.getToken(request);
+        String token = AuthorizeGatewayFilterFactory.getToken(request);
 //        AuthKeyVo vo = validateByAuth(token);
 //        if (vo == null || vo.getAgencyCode() == null || vo.getAccountName() == null
 //                || accessBindingHelper.canAccess(request.getPath().value(), vo.getAgencyCode(), vo.getAccountName())) {
 //            ContextHandler.clear();
 //            return chain.filter(exchange);
 //        }
-//        ContextHandler.clear();
+        if(StringUtils.isNotBlank(token)){
+            return chain.filter(exchange);
+        }
+        ContextHandler.clear();
 
 
         ServerHttpResponse response = exchange.getResponse();

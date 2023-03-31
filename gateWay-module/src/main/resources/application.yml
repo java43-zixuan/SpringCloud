@@ -7,6 +7,7 @@ spring:
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin
+        - StripPrefix= 1
       globalcors:
         add-to-simple-url-handler-mapping: true
         corsConfigurations:
@@ -25,7 +26,7 @@ spring:
           predicates:
             - Path=/openapi-module1/**           # 断言，路由匹配条件，匹配 /openapi 开头的所有 api
           filters:
-            - StripPrefix= 1              # 去除前缀的作用,相当于去除openapi
+            #- StripPrefix= 1              # 去除前缀的作用,相当于去除openapi
             - name: RequestRateLimiter   # 过滤器名称
               args: # 过滤器参数
                 key-resolver: "#{@ipKeyResolver}" # 通过spel表达式取IOC容器中Bean的值
@@ -36,14 +37,11 @@ spring:
           predicates:
             - Path=/openapi-module2/**
           filters:
-            - StripPrefix=1
-
         - id: userService3
           uri: lb://userService3-module
           predicates:
             - Path=/openapi-module3/**
           filters:
-            - StripPrefix=1
 
 server:
   port: 8002
@@ -69,6 +67,9 @@ ribbon:
 
 swagger-agg:
   generate-routes: userService1,userService2,userService3
+
+
+
 
 # authorization:
 #   ignored-urls:
