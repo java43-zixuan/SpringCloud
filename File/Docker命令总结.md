@@ -44,8 +44,19 @@ run: 启动
 1. 时时查看日志,用的指令: 
 `docker logs -f -t -n=5 [服务名称或者容器名称]`
 2. 查看某一段的日志,用的指令: 
-`docker logs --tail=500 [服务名称或容器id]`
+`docker logs -f --tail=500 [服务名称或容器id]`
 3. 查看容器是否启动成功用的指令: 
 `docker ps -a`
 4. 查看某个日期至今的所有日志, 并持续打印,使用的指令: 
 `docker logs -f --since "时间如:2022-06-22" [容器id或服务名称]`
+   
+
+
+###项目中常用命令
+1. 进入容器终端
+`docker exec -it 容器名 bash`
+2. 启动所有docker-compose服务并后台运行
+`docker compose up -d ` 
+`docker compose up -d 容器id`
+3. 查看容器的详细信息
+`docker inspect 容器id`
