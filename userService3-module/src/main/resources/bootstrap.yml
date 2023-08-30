@@ -5,8 +5,8 @@ spring:
     nacos:
       config:
         prefix: userService3-module
-        server-addr: localhost:8848
-        namespace: c2e808eb-7c38-4d08-8f72-8fb77d797ca3
+        server-addr: 119.3.221.244:8848
+        namespace: 2b88783c-220c-4741-94d5-94585c0314c0
         enabled: false
         group: DEFAULT_GROUP
         file-extension: yaml

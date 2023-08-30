@@ -1,14 +1,15 @@
 package com.example.userservice3.controller;
 
+import com.example.common.exception.ServiceException;
 import com.example.userservice3.entity.User;
 import com.example.userservice3.service.IUserService;
 import io.swagger.annotations.Api;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 @Api(tags = "userService3的User接口")
 @RestController
@@ -23,9 +24,11 @@ public class UserController {
         User user = new User();
         user.setName("aaa");
         user.setPwd("qwd");
+        user.setCreateTime(LocalDateTime.now());
         userService.save(user);
         if(true){
-            throw new RuntimeException("报错了！");
+            throw new RuntimeException("对不起，报错了！");
+//            throw new ServiceException("对不起，报错了！");
         }
     }
 
@@ -34,6 +37,7 @@ public class UserController {
         User user = new User();
         user.setName("aaa");
         user.setPwd("qwd");
+        user.setCreateTime(LocalDateTime.now());
         userService.save(user);
     }
 }

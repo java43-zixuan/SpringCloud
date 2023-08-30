@@ -6,8 +6,8 @@ spring:
     url: jdbc:mysql://119.3.221.244:3306/cloudtest?autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: Zx496267.
-server:
-  port: 8004
+#server:
+#  port: 8004
 eureka:
   client:
     register-with-eureka: true
@@ -27,45 +27,24 @@ global-config:
     logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
 redis:
-  database: 1
-  #  host: localhost
-  #  port: 6379
+  #单机
+  host: 119.3.221.244
+  port: 6389
   password:
-  sentinel:
-    master: mymaster #指定maser名称
-    nodes: 119.3.221.244:27001,119.3.221.244:27002,119.3.221.244:27003
+  #哨兵
+  #  database: 1
+  #  sentinel:
+  #    master: mymaster #指定maser名称
+  #    nodes: 119.3.221.244:27001,119.3.221.244:27002,119.3.221.244:27003
+  #集群
+  #  cluster:
+  #    nodes: 119.3.221.244:6379,119.3.221.244:6380,119.3.221.244:6381,119.3.221.244:6382,119.3.221.244:6383,119.3.221.244:6384
+  #    max-redirects: 3
   pool:
     maxIdle: 30
     minIdle: 1
     maxActive: 20
     maxWait: -1
-  redisson:
-    # file: classpath:redisson.yaml
-    config:
-      # 单机
-      # singleServerConfig:
-      # password: null
-      # timeout: 10000
-      # address: redis://10.210.10.154:7004
-      # 集群
-      clusterServersConfig:
-        nodeAddresses:
-          - "redis://119.3.221.244:27001"
-          - "redis://119.3.221.244:27002"
-          - "redis://119.3.221.244:27003"
-        password:
-        loadBalancer: org.redisson.connection.balancer.RoundRobinLoadBalancer
-        slaveConnectionMinimumIdleSize: 8
-        slaveConnectionPoolSize: 16
-        sslEnableEndpointIdentification: false
-        timeout: 3000
-
-      # 所有Redis节点客户端之间共享的线程数量，默认值: 当前处理核数量 * 2
-      threads: 24
-      # Netty线程池数量，默认值: 当前处理核数量 * 2
-      nettyThreads: 12
-      # 传输模式，默认值：NIO
-      transportMode: NIO
 
 # 邮件服务器的SMTP地址，可选，默认为smtp.<发件人邮箱后缀>
 host: smtp.yeah.net

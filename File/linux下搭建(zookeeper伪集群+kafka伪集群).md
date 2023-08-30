@@ -25,3 +25,9 @@ server.2=localhost:2002:3002
 server.3=localhost:2003:3003
 
 
+二、通过docker 搭建redis集群
+可以参考：https://www.cnblogs.com/mxnote/articles/17195444.html
+
+创建redis-1~redis-6 六个文件夹，同时在没个文件夹创建redis.conf文件
+然后通过docker-compose up -d 执行docker-compose.yml文件
+

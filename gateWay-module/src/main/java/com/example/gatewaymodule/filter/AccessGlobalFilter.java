@@ -30,63 +30,45 @@ import reactor.core.publisher.Mono;
 public class AccessGlobalFilter implements GlobalFilter, Ordered {
     private static final String IGNORED_URL = "/v2/api-docs";
 
-//    @Autowired
-//    @Lazy
-//    private AuthFeignService authFeignService;
     @Autowired
     private AccessBindingHelper accessBindingHelper;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        if (accessBindingHelper.getSetting() == null) {
-            return chain.filter(exchange);
-        }
-        ServerHttpRequest request = exchange.getRequest();
-        String path = request.getPath().value();
-        if (path.endsWith(IGNORED_URL)) {
-            //swagger 多个项目切换放行处理
-            return chain.filter(exchange);
-        }
+        //直接放行
+        return chain.filter(exchange);
 
-        String token = AuthorizeGatewayFilterFactory.getToken(request);
+//以下做了黑白名单的处理
+//        if (accessBindingHelper.getSetting() == null) {
+//            return chain.filter(exchange);
+//        }
+//        ServerHttpRequest request = exchange.getRequest();
+//        String path = request.getPath().value();
+//        if (path.endsWith(IGNORED_URL)) {
+//            //swagger 多个项目切换放行处理
+//            return chain.filter(exchange);
+//        }
+//
+//        String token = AuthorizeGatewayFilterFactory.getToken(request);
 //        AuthKeyVo vo = validateByAuth(token);
 //        if (vo == null || vo.getAgencyCode() == null || vo.getAccountName() == null
 //                || accessBindingHelper.canAccess(request.getPath().value(), vo.getAgencyCode(), vo.getAccountName())) {
 //            ContextHandler.clear();
 //            return chain.filter(exchange);
 //        }
-        if(StringUtils.isNotBlank(token)){
-            return chain.filter(exchange);
-        }
-        ContextHandler.clear();
-
-
-        ServerHttpResponse response = exchange.getResponse();
-        response.setStatusCode(HttpStatus.UNAUTHORIZED);
-        return response.setComplete();
+//        if(StringUtils.isNotBlank(token)){
+//            return chain.filter(exchange);
+//        }
+//        ContextHandler.clear();
+//
+//
+//        ServerHttpResponse response = exchange.getResponse();
+//        response.setStatusCode(HttpStatus.UNAUTHORIZED);
+//        return response.setComplete();
     }
 
     @Override
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE + 14;
     }
-
-//    private AuthKeyVo validateByAuth(String token) {
-//        // 是否有缓存的结果
-//        AuthKeyVo result = ContextHandler.getAuthKeyVo();
-//        if (result != null) {
-//            return result;
-//        }
-//        // token应该能够校验通过，才能获取租户和用户，进行判断
-//        if (StringUtils.isNotBlank(token)) {
-//            try {
-//                OpenApiResponse<AuthKeyVo> resp = authFeignService.checkAuthKey(token);
-//                OpenResponse<AuthKeyVo> openResponse = resp.getResponse();
-//                return openResponse.getResult();
-//            } catch (Exception e) {
-//                log.info("用户authKey验证失败", e);
-//            }
-//        }
-//        return null;
-//    }
 }

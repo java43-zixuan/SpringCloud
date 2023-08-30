@@ -1,0 +1,58 @@
+version: '3'
+services:
+  gatewayService:
+    image: cloud
+    container_name: gatewayService
+    environment:
+      - TZ=Asia/Shanghai
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8002:8002
+    volumes:
+      - /home/local/opt/docker/server/gateway/logs/web:/gatewayService/logs
+      - /home/local/opt/docker/server/gateway/app.jar:/gatewayService/app.jar
+      - /home/local/opt/docker/server/gateway/config:/gatewayService/config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  userService1:
+    image: cloud
+    container_name: userService1
+    environment:
+      - TZ=Asia/Shanghai
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8003:8003
+    volumes:
+      - /home/local/opt/docker/server/userService1-module/logs/web:/userService1/logs
+      - /home/local/opt/docker/server/userService1-module/app.jar:/userService1/app.jar
+      - /home/local/opt/docker/server/userService1-module/config:/userService1/config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  userService3:
+    image: cloud
+    container_name: userService3
+    environment:
+      - TZ=Asia/Shanghai
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8006:8006
+    volumes:
+      - /home/local/opt/docker/server/userService3-module/logs/web:/userService3/logs
+      - /home/local/opt/docker/server/userService3-module/app.jar:/userService3/app.jar
+      - /home/local/opt/docker/server/userService3-module/config:/userService3/config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"

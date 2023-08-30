@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/demo") //路由路径
 public class DemoController {
-    @Value("${server.port}")
-    private String serverPort;
-
-    @PostMapping(value = "/hello")
-    public String getServerPort(@RequestBody UserDto userDto){
-        return "Hello! port: "+ serverPort;
-    }
+//    @Value("${server.port}")
+//    private String serverPort;
+//
+//    @PostMapping(value = "/hello")
+//    public String getServerPort(@RequestBody UserDto userDto){
+//        return "Hello! port: "+ serverPort;
+//    }
 
 
     public static void main(String[] args) {

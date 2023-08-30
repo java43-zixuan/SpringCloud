@@ -30,10 +30,10 @@ public class RequestLimitConfig {
     public KeyResolver apiKeyResolver(){
         return exchange -> Mono.just(exchange.getRequest().getPath().value());
     }
-//    /**
-//     * 针对userId限制
-//     * @return
-//     */
+    /**
+     * 针对userId限制
+     * @return
+     */
 //    @Bean
 //    public KeyResolver userKeyResolver() {
 //        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getQueryParams().getFirst("userId")));

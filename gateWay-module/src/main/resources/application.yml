@@ -26,8 +26,8 @@ spring:
           predicates:
             - Path=/openapi-module1/**           # 断言，路由匹配条件，匹配 /openapi 开头的所有 api
           filters:
-            #- StripPrefix= 1              # 去除前缀的作用,相当于去除openapi
-            - name: RequestRateLimiter   # 过滤器名称
+#            - StripPrefix= 1             # 去除前缀的作用,相当于去除openapi
+            - name: RequestRateLimiter    # 过滤器名称
               args: # 过滤器参数
                 key-resolver: "#{@ipKeyResolver}" # 通过spel表达式取IOC容器中Bean的值
                 redis-rate-limiter.replenishRate: 1 # 生成令牌的速度
@@ -42,10 +42,8 @@ spring:
           predicates:
             - Path=/openapi-module3/**
           filters:
-
-server:
-  port: 8002
-
+#server:
+#  port: 8002
 eureka:
   client:
     register-with-eureka: true
@@ -67,14 +65,3 @@ ribbon:
 
 swagger-agg:
   generate-routes: userService1,userService2,userService3
-
-
-
-
-# authorization:
-#   ignored-urls:
-#     - /doc.html
-#     - /swagger-ui/*
-#     - /swagger/*
-#     - /swagger-resources/*
-#     - /*/v2/api-docs

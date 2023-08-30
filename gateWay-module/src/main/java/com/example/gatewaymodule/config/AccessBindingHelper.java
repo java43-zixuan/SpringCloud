@@ -47,7 +47,7 @@ public class AccessBindingHelper {
             return true;
         }
         boolean isInBlack = isMatchedInList(url, partnerCode, accountName, blacklist);
-        // 与黑名单配置规则向匹配的不能访问
+        // 与黑名单配置规则相匹配的不能访问
         boolean canAccess = !isInBlack;
         boolean isUrlInWhite = isMatchedInList(url, whitelist);
         boolean isInWhite = isMatchedInList(url, partnerCode, accountName, whitelist);

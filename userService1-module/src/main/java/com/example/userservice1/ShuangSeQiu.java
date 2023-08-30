@@ -59,21 +59,11 @@ public class ShuangSeQiu {
         List<Integer> result = new ArrayList<>();
         //把红球加到结果集
         result.addAll(Arrays.asList(arr));
-        //筛选出能够使用的篮球
-        List<Integer> syBlue = new ArrayList<>();
-        for(int i:blue){
-            if(!Arrays.asList(arr).contains(i)){
-                syBlue.add(i);
-            }
-        }
-        if(syBlue.size() == 0){
-            return new ArrayList<>();
-        }
         //随机找一个篮球
-        int buleIdx= (int)(Math.random()*syBlue.size());
-        int buleData = syBlue.get(buleIdx);
+        int blueIdx= (int)(Math.random()*blue.length);
+        int blueData = blue[blueIdx];
         //组装结果集
-        result.add(buleData);
+        result.add(blueData);
         return result;
     }
 

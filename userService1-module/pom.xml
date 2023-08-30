@@ -170,18 +170,7 @@
         </dependency>
         <!-- Caffeine本地缓存 -->
 
-        <!-- 解决seata LocalDateTime序列化问题，配合配置文件seata.client.undo.log-serialization=protostuff 使用 -->
-        <dependency>
-            <groupId>io.protostuff</groupId>
-            <artifactId>protostuff-core</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.protostuff</groupId>
-            <artifactId>protostuff-runtime</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-        <!-- 解决seata LocalDateTime序列化问题 end -->
+
 
         <!-- rabbitMq -->
 <!--        <dependency>-->

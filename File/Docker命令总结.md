@@ -1,3 +1,44 @@
+##Docker 安装
+```
+下载安装包
+wget https://download.docker.com/linux/static/stable/x86_64/docker-24.0.2.tgz
+解压
+tar -xvzf docker-24.0.2.tgz
+移动解压出来的二进制文件到 /usr/bin 目录中
+mv docker/* /usr/bin/
+
+编辑docker的系统服务文件
+vi /usr/lib/systemd/system/docker.service
+
+
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https://docs.docker.com
+After=network-online.target firewalld.service
+Wants=network-online.target
+[Service]
+Type=notify
+ExecStart=/usr/bin/dockerd
+ExecReload=/bin/kill -s HUP $MAINPID
+LimitNOFILE=infinity
+LimitNPROC=infinity
+TimeoutStartSec=0
+Delegate=yes
+KillMode=process
+Restart=on-failure
+StartLimitBurst=3
+StartLimitInterval=60s
+[Install]
+WantedBy=multi-user.target
+
+重新加载和重启docker
+systemctl daemon-reload
+systemctl restart docker
+```
+
+
+
+
 ##Docker 命令
 ###docker相关的命令
 1. 重启:  
@@ -60,3 +101,22 @@ run: 启动
 `docker compose up -d 容器id`
 3. 查看容器的详细信息
 `docker inspect 容器id`
+4. 启用docker buildkit
+```	
+修改/etc/docker/daemon.json 文件
+"features": {
+    "buildkit": true
+}
+重启docker-daemon和docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo service docker restart
+```
+
+5. 设置docker 开机自启
+开启： systemctl enable docker.service
+关闭： systemctl disable docker.service
+
+6. 设置docker 容器开机自启
+开启： docker update --restart=always  <CONTAINER ID>
+关闭： docker update --restart=no <CONTAINER ID>

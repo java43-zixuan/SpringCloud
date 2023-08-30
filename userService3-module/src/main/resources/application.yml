@@ -1,6 +1,8 @@
 spring:
   application:
     name: userService3-module
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://119.3.221.244:3306/test?autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
@@ -10,8 +12,8 @@ spring:
 #    hibernate:
 #      ddl-auto: update
 #    show-sql: true
-server:
-  port: 8005
+#server:
+#  port: 8005
 eureka:
   client:
     register-with-eureka: true
@@ -32,68 +34,46 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
 redis:
-  database: 1
-  #  host: localhost
-  #  port: 6379
+  #单机
+  host: 119.3.221.244
+  port: 6389
   password:
-  sentinel:
-    master: mymaster #指定maser名称
-    nodes: 119.3.221.244:27001,119.3.221.244:27002,119.3.221.244:27003
+  #哨兵
+  #  database: 1
+  #  sentinel:
+  #    master: mymaster #指定maser名称
+  #    nodes: 119.3.221.244:27001,119.3.221.244:27002,119.3.221.244:27003
+  #集群
+#  cluster:
+#    nodes: 119.3.221.244:6379,119.3.221.244:6380,119.3.221.244:6381,119.3.221.244:6382,119.3.221.244:6383,119.3.221.244:6384
+#    max-redirects: 3
   pool:
     maxIdle: 30
     minIdle: 1
     maxActive: 20
     maxWait: -1
-  redisson:
-    # file: classpath:redisson.yaml
-    config:
-      # 单机
-      # singleServerConfig:
-      # password: null
-      # timeout: 10000
-      # address: redis://10.210.10.154:7004
-      # 集群
-      clusterServersConfig:
-        nodeAddresses:
-          - "redis://119.3.221.244:27001"
-          - "redis://119.3.221.244:27002"
-          - "redis://119.3.221.244:27003"
-        password:
-        loadBalancer: org.redisson.connection.balancer.RoundRobinLoadBalancer
-        slaveConnectionMinimumIdleSize: 8
-        slaveConnectionPoolSize: 16
-        sslEnableEndpointIdentification: false
-        timeout: 3000
 
-      # 所有Redis节点客户端之间共享的线程数量，默认值: 当前处理核数量 * 2
-      threads: 24
-      # Netty线程池数量，默认值: 当前处理核数量 * 2
-      nettyThreads: 12
-      # 传输模式，默认值：NIO
-      transportMode: NIO
-
-seata:
-  enabled: true
-  application-id: ${spring.application.name}
-  tx-service-group: seata-server
-  # 是否自动开启数据源代理
-  enable-auto-data-source-proxy: true
-  # 数据源代理模式，使用AT模式
-  data-source-proxy-mode: AT
-  service:
-    # 事务群组
-    vgroupMapping:
-      seata-server: default  # default 的值为集群的名字，在配置 seata service 的时候指定的
-    grouplist:
-      default: 119.3.221.244:8091
-    enable-degrade: false
-    # 全局事务开关
-    disable-global-transaction: false
-  config:
-    type: file
-    file:
-      name: file.conf
-  registry:
-    type: file
-    file:
-      name: file
+#seata:
+#  tx-service-group: mygroup
+#  service:
+#    vgroup-mapping:
+#      mygroup: seata-server
+#  registry:
+#    #配置seata注册中心   告诉clint 访问seata server
+#    type: eureka
+#    eureka:
+#      serviceUrl: http://119.3.221.244:8001/eureka
+#      application: seata-server
+#      weight: 1
+#  config:
+#    #配置seata配置中心
+#    nacos:
+#      server-addr: 119.3.221.244:8848
+#      username: nacos
+#      password: nacos
+#      group: DEFAULT_GROUP
+#      namespace: 2b88783c-220c-4741-94d5-94585c0314c0
+#  client:
+#    undo:
+#      # 指定undo的序列化协议为protostuff
+#      log-serialization: protostuff

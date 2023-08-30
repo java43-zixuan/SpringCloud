@@ -28,7 +28,7 @@ public class XxlJobAutoConfiguration {
 	 * @param xxlJobProperties xxl 配置
 	 * @return XxlJobSpringExecutor
 	 */
-	@Bean
+//	@Bean
 	public XxlJobSpringExecutor xxlJobSpringExecutor(XxlJobProperties xxlJobProperties/*,DiscoveryClient discoveryClient*/) {
 		XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
 		xxlJobSpringExecutor.setAppname(xxlJobProperties.getExecutor().getAppname());
@@ -39,10 +39,6 @@ public class XxlJobAutoConfiguration {
 		xxlJobSpringExecutor.setLogPath(xxlJobProperties.getExecutor().getLogPath());
 		xxlJobSpringExecutor.setLogRetentionDays(xxlJobProperties.getExecutor().getLogRetentionDays());
 		xxlJobSpringExecutor.setAdminAddresses(xxlJobProperties.getAdmin().getAddresses());
-
-
-
-
 		return xxlJobSpringExecutor;
 	}
 

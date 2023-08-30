@@ -89,7 +89,6 @@ public class AuthorizeGatewayFilterFactory extends AbstractGatewayFilterFactory<
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }
-
             return chain.filter(exchange);
         }, ORDER);
     }

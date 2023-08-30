@@ -1,5 +1,6 @@
 package com.example.userservice1.controller;
 
+import com.example.common.vo.ResultVO;
 import com.example.userservice1.entity.User;
 import com.example.userservice1.feign.FeignService;
 import io.swagger.annotations.Api;
@@ -18,8 +19,25 @@ public class FeignController {
     private FeignService feignService;
 
     @PostMapping(value = "/feignCall")
-    public void feignCall(@RequestBody User user){
-        feignService.addUser(user);
+    public ResultVO feignCall(@RequestBody User user){
+        try{
+            feignService.addUser(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultVO.fail(e.getMessage());
+        }
+        return ResultVO.success();
     }
 
+
+    @PostMapping(value = "/feignCall2")
+    public ResultVO feignCall2(@RequestBody User user){
+        try{
+            feignService.addUser2(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultVO.fail(e.getMessage());
+        }
+        return ResultVO.success();
+    }
 }
